@@ -1,3 +1,5 @@
+let ambo = false;
+
 const createTombola = () => {
   const container = document.querySelector("main > section");
   for (let i = 1; i <= 76; i++) {
@@ -115,8 +117,9 @@ const isAmbo = () => {
   let est = 0;
   row.forEach(element => {
     console.log(element.querySelectorAll(".extracted"));
-    if (element.querySelectorAll(".extracted").length === 2) {
+    if (element.querySelectorAll(".extracted").length === 2 && ambo === false) {
       alert("AMBO!");
+      ambo = true;
     }
   });
 };
