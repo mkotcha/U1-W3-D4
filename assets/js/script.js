@@ -12,7 +12,7 @@ const isExtracted = number => {
 
 const canIGo = () => {
   const elements = document.querySelectorAll(".extracted");
-  console.log(elements.length);
+
   if (elements.length < 76) return true;
   else return false;
 };
@@ -42,3 +42,4 @@ const reset = () => {
 createTombola();
 
 document.querySelector("header button").addEventListener("click", estrai);
+document.querySelector("main > button").addEventListener("click", reset);
