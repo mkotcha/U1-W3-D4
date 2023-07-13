@@ -25,6 +25,14 @@ const estrai = () => {
     if (!isExtracted(number)) {
       const numberBox = document.querySelector(`#num-${number}`);
       numberBox.classList.add("extracted");
+
+      const cartelNumber = document.querySelectorAll(".cel");
+      cartelNumber.forEach(element => {
+        if (parseInt(element.innerText) === number) {
+          element.classList.add("extracted");
+        }
+      });
+
       const numberExtracted = document.querySelector("header h2");
       numberExtracted.innerText = number;
       found = true;
@@ -37,7 +45,25 @@ const reset = () => {
   elements.forEach(element => element.classList.remove("extracted"));
   const numberExtracted = document.querySelector("header h2");
   numberExtracted.innerText = "";
+  document.querySelectorAll(".cartel").forEach(element => element.remove());
 };
+
+function numSort(ar) {
+  let i = 0,
+    j;
+  while (i < ar.length) {
+    j = i + 1;
+    while (j < ar.length) {
+      if (ar[j] < ar[i]) {
+        let temp = ar[i];
+        ar[i] = ar[j];
+        ar[j] = temp;
+      }
+      j++;
+    }
+    i++;
+  }
+}
 
 const randomize = () => {
   const numbers = [];
@@ -45,10 +71,12 @@ const randomize = () => {
   for (let i = 0; i < 3; i++) {
     const number5 = [];
     for (let j = 0; j < 5; j++) {
-      let num = Math.floor(Math.random() * 10);
+      let num = Math.floor(Math.random() * 76) + 1;
+
       number5.push(num);
     }
     console.log(number5);
+    numSort(number5);
     numbers.push(number5);
   }
   return numbers;
@@ -57,7 +85,7 @@ const randomize = () => {
 const creaCartelle = event => {
   event.preventDefault();
   reset();
-  document.querySelectorAll(".cartel").forEach(element => element.remove());
+
   const numCart = event.target.elements[0].value;
   const numbers = randomize();
   console.log(numbers);
