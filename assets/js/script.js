@@ -39,7 +39,48 @@ const reset = () => {
   numberExtracted.innerText = "";
 };
 
+const randomize = () => {
+  const numbers = [];
+
+  for (let i = 0; i < 3; i++) {
+    const number5 = [];
+    for (let j = 0; j < 5; j++) {
+      let num = Math.floor(Math.random() * 10);
+      number5.push(num);
+    }
+    console.log(number5);
+    numbers.push(number5);
+  }
+  return numbers;
+};
+
+const creaCartelle = event => {
+  event.preventDefault();
+  reset();
+  document.querySelectorAll(".cartel").forEach(element => element.remove());
+  const numCart = event.target.elements[0].value;
+  const numbers = randomize();
+  console.log(numbers);
+  for (let i = 0; i < numCart; i++) {
+    const cartel = document.createElement("div");
+    cartel.classList.add("cartel");
+    for (let j = 0; j < 3; j++) {
+      const row = document.createElement("div");
+      row.classList.add("row");
+      for (let k = 0; k < 5; k++) {
+        const cel = document.createElement("div");
+        cel.classList.add("cel");
+        cel.innerText = numbers[j][k];
+        row.appendChild(cel);
+      }
+      cartel.appendChild(row);
+    }
+    document.querySelector("main").appendChild(cartel);
+  }
+};
+
 createTombola();
 
 document.querySelector("header button").addEventListener("click", estrai);
 document.querySelector("main > button").addEventListener("click", reset);
+document.querySelector("form").addEventListener("submit", creaCartelle);
