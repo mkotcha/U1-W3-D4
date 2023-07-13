@@ -91,15 +91,17 @@ const randomize2 = () => {
     let est4 = -1;
     for (let j = 0; j < 5; j++) {
       let notEst = true;
-      let num;
+      let num = 0;
       while (notEst) {
         let numR = Math.floor(Math.random() * 8);
 
         if (numR !== est[0] && numR !== est[1] && numR !== est[2] && numR !== est[3] && numR !== est[4]) {
-          notEst = false;
-          est.push(numR);
           let numR2 = Math.floor(Math.random() * 9);
           num = numR * 10 + numR2;
+          if (num <= 76) {
+            notEst = false;
+            est.push(numR);
+          }
         }
       }
       number5.push(num);
