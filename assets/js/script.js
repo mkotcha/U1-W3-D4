@@ -12,7 +12,6 @@ const isExtracted = number => {
 
 const canIGo = () => {
   const elements = document.querySelectorAll(".extracted");
-
   if (elements.length < 76) return true;
   else return false;
 };
@@ -25,14 +24,12 @@ const estrai = () => {
     if (!isExtracted(number)) {
       const numberBox = document.querySelector(`#num-${number}`);
       numberBox.classList.add("extracted");
-
       const cartelNumber = document.querySelectorAll(".cel");
       cartelNumber.forEach(element => {
         if (parseInt(element.innerText) === number) {
           element.classList.add("extracted");
         }
       });
-
       const numberExtracted = document.querySelector("header h2");
       numberExtracted.innerText = number;
       found = true;
@@ -72,7 +69,39 @@ const randomize = () => {
     const number5 = [];
     for (let j = 0; j < 5; j++) {
       let num = Math.floor(Math.random() * 76) + 1;
+      number5.push(num);
+    }
+    console.log(number5);
+    numSort(number5);
+    numbers.push(number5);
+  }
+  return numbers;
+};
 
+const randomize2 = () => {
+  const numbers = [];
+
+  for (let i = 0; i < 3; i++) {
+    const number5 = [];
+    const est = [];
+    let est0 = -1;
+    let est1 = -1;
+    let est3 = -1;
+    let est2 = -1;
+    let est4 = -1;
+    for (let j = 0; j < 5; j++) {
+      let notEst = true;
+      let num;
+      while (notEst) {
+        let numR = Math.floor(Math.random() * 8);
+
+        if (numR !== est[0] && numR !== est[1] && numR !== est[2] && numR !== est[3] && numR !== est[4]) {
+          notEst = false;
+          est.push(numR);
+          let numR2 = Math.floor(Math.random() * 9);
+          num = numR * 10 + numR2;
+        }
+      }
       number5.push(num);
     }
     console.log(number5);
@@ -87,7 +116,7 @@ const creaCartelle = event => {
   reset();
 
   const numCart = event.target.elements[0].value;
-  const numbers = randomize();
+  const numbers = randomize2();
   console.log(numbers);
   for (let i = 0; i < numCart; i++) {
     const cartel = document.createElement("div");
