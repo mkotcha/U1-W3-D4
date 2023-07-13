@@ -35,6 +35,7 @@ const estrai = () => {
       found = true;
     }
   }
+  isAmbo();
 };
 
 const reset = () => {
@@ -113,7 +114,18 @@ const randomize2 = () => {
   return numbers;
 };
 
-const creaCartelle = event => {
+const isAmbo = () => {
+  const row = document.querySelectorAll(".row");
+  let est = 0;
+  row.forEach(element => {
+    console.log(element.querySelectorAll(".extracted"));
+    if (element.querySelectorAll(".extracted").length === 2) {
+      alert("AMBO!");
+    }
+  });
+};
+
+function creaCartelle(event) {
   event.preventDefault();
   reset();
 
@@ -136,7 +148,7 @@ const creaCartelle = event => {
     }
     document.querySelector("main").appendChild(cartel);
   }
-};
+}
 
 createTombola();
 
