@@ -85,11 +85,7 @@ const randomize2 = () => {
   for (let i = 0; i < 3; i++) {
     const number5 = [];
     const est = [];
-    let est0 = -1;
-    let est1 = -1;
-    let est3 = -1;
-    let est2 = -1;
-    let est4 = -1;
+
     for (let j = 0; j < 5; j++) {
       let notEst = true;
       let num = 0;
@@ -130,9 +126,9 @@ function creaCartelle(event) {
   reset();
 
   const numCart = event.target.elements[0].value;
-  const numbers = randomize2();
-  console.log(numbers);
+  //   console.log(numbers);
   for (let i = 0; i < numCart; i++) {
+    const numbers = randomize2();
     const cartel = document.createElement("div");
     cartel.classList.add("cartel");
     for (let j = 0; j < 3; j++) {
